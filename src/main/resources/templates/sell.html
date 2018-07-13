@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>Sell Item</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/}">Home</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/signup}">Sign up</a>
+            </li>
+            <li class="nav-item sell">
+                <a class="nav-link " th:href="@{/sell}"><span sec:authorize="hasAuthority('USER')"> Sell item</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <form th:action="@{/sell}" th:object="${item}" method="post" enctype="multipart/form-data">
+        <input type="hidden" th:field="*{id}">
+        <div class="form-group col-md-6">
+            <label for="description">Description</label>
+            <input type="text" class="form-control" th:field="*{description}">
+        </div>
+        <div class="form-group col-md-6">
+            <label class="btn btn-default btn-file">Picture<input type="file" name="file" class="form-control"></label>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="tag">Tag or Category</label>
+            <input type="text" class="form-control" th:field="*{tag}">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="description">Price</label>
+            <input type="number" class="form-control" th:field="*{price}">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="available" th:text="'Available'"></label>
+            <input type="checkbox" class="form-control" th:field="*{available}" th:checked="${available}">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="delist" th:text="'Delist'"></label>
+            <input type="checkbox" class="form-control" th:field="*{delist}" th:checked="${delist}">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+</body>
+</html>
+

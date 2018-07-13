@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>Buy Item</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/signup}">Sign up</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " th:href="@{/sell}"><span sec:authorize="hasAuthority('USER')"> Sell item</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <form th:action="@{/}" th;object="${item}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <div class="form-group col-md-6">
+            <label for="buy" th:text="'Buy'"></label>
+            <input type="checkbox" class="form-control" th:field="*{buy}" th:checked="*{buy}">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="message">Message</label>
+            <input type="text" class="form-control" th:field="*{message}">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="description">Description</label>
+            <input type="text" class="form-control" id="description" th:value="${item.description}">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="tag">Tag or Category</label>
+            <input type="text" class="form-control" id="tag" th:value="${item.tag}">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="price">Price</label>
+            <input type="number" class="form-control" id="price" th:value="${item.price}">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+</body>
+</html>
+
